@@ -1,0 +1,16 @@
+Todos:
+// These are just some thoughts, feel free to add and change
+
+-What do you we need to do on Drupal end?
+-clarify Drupal calls according to chat server setup
+-Pulling General Chat into Drupal
+-Pull Specific Chatroom into Drupal
+-initial UI / chat embedding within Drupal node
+-determine security considerations between chat server and drupal
+-add drupal level security checks to only only certain users
+-add level of security between chat sever and drupal 
+-clean up UI / theming
+-integrate with atrium_opentok to create seamless node.js and video chat 
+
+===============================
+Developer Notes:
