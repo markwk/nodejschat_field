@@ -1,0 +1,7 @@
+name = Node.JS Chat API Integration Module
+description = Provides a CCK field for adding Node.JS Chat to Nodes
+core = 6.x
+dependencies[] = jquery_update
+dependencies[] = libraries
+dependencies[] = content
+
