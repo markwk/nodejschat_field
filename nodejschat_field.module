@@ -6,18 +6,12 @@
 function nodejschat_field_menu() {
   $items = array();
   $items['admin/settings/nodejschat_field'] = array(
-    'title' => t('OpenTok API'),
+    'title' => t('NodeJS Chat Server Configuration'),
     'description' => t('Configuration for the Node.js Chat API module.'),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('nodejschat_field_configuration_form'),
     'access arguments' => array('administer site configuration'),
     'type' => MENU_NORMAL_ITEM,
-  );
-
-  $items['nodejschat_field/get/streamwrapper'] = array(
-    'page callback' => 'nodejschat_field_get_stream_wrapper',
-    'access arguments' => array('access content'),
-    'type' => MENU_CALLBACK,
   );
 
   $items['nodejschat_field/save/connection'] = array(
@@ -28,30 +22,16 @@ function nodejschat_field_menu() {
   return $items;
 }
 /**
-* Opentok API Configuration Form
+* NodeJS Chat Configuration Form
 * 
 * @param mixed $form_state
 */
 function nodejschat_field_configuration_form(&$form_state) {
-  $form['nodejschat_field_api_key'] = array(
+  $form['nodejschat_field_chatserverurl'] = array(
     '#type' => 'textfield',
-    '#default_value' => variable_get('nodejschat_field_api_key', ''),
-    '#title' => t('Node.JS Chat Server API Key'),
+    '#default_value' => variable_get('nodejschat_field_chatserverurl', ''),
+    '#title' => t('Node.JS Chat Server URL'),
     '#required' => TRUE,
-  );
-
-  $form['nodejschat_field_api_secret'] = array(
-    '#type' => 'textfield',
-    '#default_value' => variable_get('nodejschat_field_api_secret', ''),
-    '#title' => t('Node.JS Chat Server API Secret'),
-    '#required' => TRUE,
-  );
-
-  $form['nodejschat_field_staging'] = array(
-    '#type' => 'texfield',
-    '#default_value' => variable_get('nodejschat_field_chatserver', FALSE),
-    '#title' => t('Node.JS Chat Server URL.'),
-	'#required' => TRUE,
   );
 
   return system_settings_form($form);
@@ -63,100 +43,5 @@ function nodejschat_field_configuration_form(&$form_state) {
 * @param string $form_state
 */
 function nodejschat_field_configuration_form_validate($form, &$form_state) {
-  $form_state['values']['nodejschat_field_api_key'] = trim($form_state['values']['nodejschat_field_api_key']);
-  $form_state['values']['nodejschat_field_api_secret'] = trim($form_state['values']['nodejschat_field_api_secret']);
-}
-/**
-* Creating a field type for Content Type
-* 
-*/
-function nodejschat_field_field_info() {
-  return array(
-    'nodejschat_field' => array(
-      'label' => t('NodeJS Chat Session'),
-      'description' => t('This field stores an NodeJS chat session.'),
-    ),
-  );
-}
-/**
-* Settings for field
-* 
-* @param mixed $op
-* @param mixed $field
-* @return mixed
-*/
-function nodejschat_field_field_settings($op, $field){
-  switch($op){
-    case 'form':
-      $form = array();
-      $form['author_role'] = array(
-        '#type' => 'select',
-        '#title' => t('NodeJS Chat Session role for author'),
-        '#options' => array(
-          'subscriber' => t('Subscriber'),
-          'publisher' => t('Publisher'),
-          'moderator' => t('Moderator'),
-        ),
-        '#default_value' => $field['author_role'],
-        '#required' => FALSE,
-      );
-      $form['regenerate_session'] = array(
-        '#type' => 'checkbox',
-        '#title' => t('Regenerate session on node save'),
-        '#default_value' => $field['regenerate_session'],
-      );
-      return $form;
-    case 'save':
-      return array('author_role', 'regenerate_session');
-    case 'database columns':
-      return array(
-        'api_key' => array(
-          'type' => 'varchar',
-          'length' => 32,
-        ),
-        'api_staging' => array(
-          'type' => 'int',
-          'unsigned' => TRUE,
-          'not null' => TRUE,
-          'default' => 0,
-        ),
-        'session_id' => array(
-          'type' => 'varchar',
-          'length' => 128,
-        ),
-        'auto_connect' => array(
-          'type' => 'int',
-          'unsigned' => TRUE,
-          'not null' => TRUE,
-          'default' => 0,
-        ),
-        'auto_publish' => array(
-          'type' => 'int',
-          'unsigned' => TRUE,
-          'not null' => TRUE,
-          'default' => 0,
-        ),
-        'push_chat' => array(
-          'type' => 'int',
-          'unsigned' => TRUE,
-          'not null' => TRUE,
-          'default' => 0,
-        ),
-        'session_type' => array(
-          'type' => 'int',
-          'unsigned' => TRUE,
-          'not null' => TRUE,
-          'default' => 0,
-        ),
-      );
-  }
-}
-/**
-* Implementation of <field>_content_is_empty()
-* 
-* @param mixed $item
-* @param mixed $field
-*/
-function nodejschat_field_content_is_empty($item, $field) {
-  return FALSE;
+  $form_state['values']['nodejschat_field_chatserver'] = trim($form_state['values']['nodejschat_field_chatserver']);
 }

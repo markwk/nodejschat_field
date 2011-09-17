@@ -2,14 +2,21 @@
 These are just some thoughts, feel free to add and change
 
 ## Questions:
-* What do you we need to do on Drupal end? *Answer*: Implement Drupal 6 NodeJS API module 
+* What do you we need to do on Drupal end? 
+* *Answer*: Implement Drupal 6 NodeJS API module 
 * *Answer*: NodeJS API module should work well know for api with nodejs server.
 * Working from 6.x-3.x branch of chatroom module?
 * *Answer*: Doubtful, even 7.x-3.x still in dev, seems to be still too tightly integrated with Drupal
-*
-*
-* clarify Drupal calls according to chat server setup
-* Pulling General Chat into Drupal
+* 
+* Good existing Node.JS + Socket.io chat server code?
+* *Example*: https://github.com/endtwist/AjaxIM/
+* *Example*: https://github.com/jslatts/nodechat
+
+## Tasks:
+1. Hack / build initial multichatroom server
+2. Initial Module for adding chatroom integration as cck field for nodes
+3. clarify Drupal calls according to chat server setup
+4. Pulling General Chat into Drupal
 * Pull Specific Chatroom into Drupal
 * initial UI / chat embedding within Drupal node
 * determine security considerations between chat server and drupal
@@ -26,3 +33,5 @@ These are just some thoughts, feel free to add and change
 # Resources / Inspirations
 * http://blip.tv/drupalcon/node_js-5493919
 * http://nodetuts.com/
+* http://fzysqr.com/2011/02/28/nodechat-js-using-node-js-backbone-js-socket-io-and-redis-to-make-a-real-time-chat-app/
+* *Example*: https://github.com/bigbinary/node-chat-in-steps

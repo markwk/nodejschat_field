@@ -2,7 +2,5 @@ name = Node.JS Chat CCK Field
 description = Provides a CCK field for adding Node.JS Chat to Drupal Nodes
 core = 6.x
 dependencies[] = nodejs
-dependencies[] = jquery_update
-dependencies[] = libraries
 dependencies[] = content
 
