@@ -10,7 +10,20 @@ These are just some thoughts, feel free to add and change
 * 
 * Good existing Node.JS + Socket.io chat server code?
 * *Example*: https://github.com/endtwist/AjaxIM/
-* *Example*: https://github.com/jslatts/nodechat
+* *Example*: https://github.com/jslatts/nodechat with demo: nodechat.no.de
+*
+* Multiple Chat Room Example:
+* *Answer:* https://github.com/Flotype/now/tree/master/examples/multiroomchat_example
+* This looks like a powerful route to achieve what we are looking for with multiple room chat
+* This one too: https://github.com/chrismatthieu/CHATS.iO // demo @ https://chats.io
+
+## Some Initial Conclusions (MARKWK):
+* After reviewing various nodejs chat resources, it seems that the best combination of technologies for nodejs chat with multiple room is: Node.JS, Express, Socket.io, NowJS, Redis
+* NowJS
+* The Multiroom chatroom example with NowJS offers a good start to what we want to achieve for multichatroom server. Extremely easy with the everyone.now function
+* Not sure about handling permissions but this should be checked/handled on Drupal end. 
+* *Questions*: How to handle chatroom db storage? redis? See this example https://github.com/jslatts/nodechat/
+* It seems like it would be good to archive the chat sessions to drupal for obvious performance and backup reasons. So we'll need a way to pass a transcript of the conversation to Drupal. 
 
 ## Tasks:
 1. Hack / build initial multichatroom server
@@ -27,7 +40,7 @@ These are just some thoughts, feel free to add and change
 
 ===============================
 # Developer Notes:
-* Technologies: Node.JS, Express, Socket.io
+* Technologies: Node.JS, Express, Socket.io, NowJS (npm install now)
 
 ===============================
 # Resources / Inspirations
@@ -35,3 +48,5 @@ These are just some thoughts, feel free to add and change
 * http://nodetuts.com/
 * http://fzysqr.com/2011/02/28/nodechat-js-using-node-js-backbone-js-socket-io-and-redis-to-make-a-real-time-chat-app/
 * *Example*: https://github.com/bigbinary/node-chat-in-steps
+* Docs for NowJS: http://nowjs.org/
+* https://github.com/jslatts/nodechat and demo: nodechat.no.de
