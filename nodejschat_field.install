@@ -2,8 +2,8 @@
 /**
  * Implementation of hook_schema()
  */
-function nodejschat_api_schema() {
-  $schema['nodejschat_api_connection'] = array(
+function nodejschat_field_schema() {
+  $schema['nodejschat_field_connection'] = array(
     'fields' => array(
       'connection_id' => array(
         'type' => 'varchar',
@@ -33,10 +33,10 @@ function nodejschat_api_schema() {
   return $schema;
 }
 
-function nodejschat_api_install(){
-	drupal_install_schema('nodejschat_api');
+function nodejschat_field_install(){
+	drupal_install_schema('nodejschat_field');
 }
 
-function nodejschat_api_uninstall(){
-	drupal_uninstall_schema('nodejschat_api');
+function nodejschat_field_uninstall(){
+	drupal_uninstall_schema('nodejschat_field');
 }

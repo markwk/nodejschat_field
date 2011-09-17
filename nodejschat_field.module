@@ -3,25 +3,25 @@
 * Implementation of hook_menu()
 * 
 */
-function nodejschat_api_menu() {
+function nodejschat_field_menu() {
   $items = array();
-  $items['admin/settings/nodejschat_api'] = array(
+  $items['admin/settings/nodejschat_field'] = array(
     'title' => t('OpenTok API'),
     'description' => t('Configuration for the Node.js Chat API module.'),
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('nodejschat_api_configuration_form'),
+    'page arguments' => array('nodejschat_field_configuration_form'),
     'access arguments' => array('administer site configuration'),
     'type' => MENU_NORMAL_ITEM,
   );
 
-  $items['nodejschat_api/get/streamwrapper'] = array(
-    'page callback' => 'nodejschat_api_get_stream_wrapper',
+  $items['nodejschat_field/get/streamwrapper'] = array(
+    'page callback' => 'nodejschat_field_get_stream_wrapper',
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
   );
 
-  $items['nodejschat_api/save/connection'] = array(
-    'page callback' => 'nodejschat_api_save_connection',
+  $items['nodejschat_field/save/connection'] = array(
+    'page callback' => 'nodejschat_field_save_connection',
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
   );
@@ -32,24 +32,24 @@ function nodejschat_api_menu() {
 * 
 * @param mixed $form_state
 */
-function nodejschat_api_configuration_form(&$form_state) {
-  $form['nodejschat_api_api_key'] = array(
+function nodejschat_field_configuration_form(&$form_state) {
+  $form['nodejschat_field_api_key'] = array(
     '#type' => 'textfield',
-    '#default_value' => variable_get('nodejschat_api_api_key', ''),
+    '#default_value' => variable_get('nodejschat_field_api_key', ''),
     '#title' => t('Node.JS Chat Server API Key'),
     '#required' => TRUE,
   );
 
-  $form['nodejschat_api_api_secret'] = array(
+  $form['nodejschat_field_api_secret'] = array(
     '#type' => 'textfield',
-    '#default_value' => variable_get('nodejschat_api_api_secret', ''),
+    '#default_value' => variable_get('nodejschat_field_api_secret', ''),
     '#title' => t('Node.JS Chat Server API Secret'),
     '#required' => TRUE,
   );
 
-  $form['nodejschat_api_staging'] = array(
+  $form['nodejschat_field_staging'] = array(
     '#type' => 'texfield',
-    '#default_value' => variable_get('nodejschat_api_chatserver', FALSE),
+    '#default_value' => variable_get('nodejschat_field_chatserver', FALSE),
     '#title' => t('Node.JS Chat Server URL.'),
 	'#required' => TRUE,
   );
@@ -62,17 +62,17 @@ function nodejschat_api_configuration_form(&$form_state) {
 * @param mixed $form
 * @param string $form_state
 */
-function nodejschat_api_configuration_form_validate($form, &$form_state) {
-  $form_state['values']['nodejschat_api_api_key'] = trim($form_state['values']['nodejschat_api_api_key']);
-  $form_state['values']['nodejschat_api_api_secret'] = trim($form_state['values']['nodejschat_api_api_secret']);
+function nodejschat_field_configuration_form_validate($form, &$form_state) {
+  $form_state['values']['nodejschat_field_api_key'] = trim($form_state['values']['nodejschat_field_api_key']);
+  $form_state['values']['nodejschat_field_api_secret'] = trim($form_state['values']['nodejschat_field_api_secret']);
 }
 /**
 * Creating a field type for Content Type
 * 
 */
-function nodejschat_api_field_info() {
+function nodejschat_field_field_info() {
   return array(
-    'nodejschat_api' => array(
+    'nodejschat_field' => array(
       'label' => t('NodeJS Chat Session'),
       'description' => t('This field stores an NodeJS chat session.'),
     ),
@@ -85,7 +85,7 @@ function nodejschat_api_field_info() {
 * @param mixed $field
 * @return mixed
 */
-function nodejschat_api_field_settings($op, $field){
+function nodejschat_field_field_settings($op, $field){
   switch($op){
     case 'form':
       $form = array();
@@ -157,6 +157,6 @@ function nodejschat_api_field_settings($op, $field){
 * @param mixed $item
 * @param mixed $field
 */
-function nodejschat_api_content_is_empty($item, $field) {
+function nodejschat_field_content_is_empty($item, $field) {
   return FALSE;
 }
